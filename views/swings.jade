@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1 #{title}
+  table
+    thead
+      tr
+        th Club
+        th Club Head Speed
+        th Launch Angle
+        th Azimuth
+        th Side Spin
+        th Back Spin
+        th Total Spin
+        th Carry
+        th Total Distance
+        th Offline
+    tbody
+      - for swing in swings
+        tr
+          td #{swing['Club']}
+          td #{swing['Club Head Speed']}
+          td #{swing['Launch Angle']}
+          td #{swing['Azimuth']}
+          td #{swing['Side Spin']}
+          td #{swing['Back Spin']}
+          td #{swing['Total Spin']}
+          td #{swing['Carry']}
+          td #{swing['Total Distance']}
+          td #{swing['Offline']}
