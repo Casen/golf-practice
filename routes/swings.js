@@ -1,12 +1,25 @@
-var database = "golf"; // could be a url as well as a db name
-var collections = ["swings"]
-var db = require("mongojs").connect(database, collections);
-var nines;
+var swingCollection = new require('../collections/swing').SwingCollection()
 
-exports.swings = function(req, res){
-  q = req.query || {};
-  db.swings.find(req.query, function(err, swings){
-    if( err || !swings) console.log("No swings found");
-    else res.render('swings', {title: 'Swings', swings: swings});
+exports.index = function(req, res){
+  swingCollection.fetch({
+    error: function(error){
+      console.log(error);
+    },
+    success: function(swings) {
+      res.render('swings', {title: 'All Practice Swings', swings: swings});
+    }
   });
 };
+
+exports.clubs = function(req, res){
+
+  swingCollection.fetch(req.params.club, {
+    error: function(error){
+      console.log(error);
+    },
+    success: function(swings) {
+      res.render('swings', {title: 'All Practice Swings', swings: swings, distanceGraphPoints: swingCollection.plotDistance()});
+    }
+  });
+};
+

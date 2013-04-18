@@ -29,7 +29,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/swings', swings.swings);
+app.get('/swings', swings.index);
+app.get('/swings/:club', swings.clubs);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
