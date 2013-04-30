@@ -5,8 +5,8 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , charts = require('./routes/charts')
   , swings = require('./routes/swings')
+  , swingData = require('./routes/swing_data')
   , http = require('http')
   , path = require('path');
 
@@ -29,9 +29,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/uploads', routes.uploads);
+app.post('/process-csv', routes.processCSV);
 app.get('/swings', swings.index);
 app.get('/swings/:club', swings.clubs);
-app.get('/charts/:club', charts.clubs);
+app.get('/data/:club', swingData.clubs);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

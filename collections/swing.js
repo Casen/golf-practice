@@ -26,6 +26,18 @@ exports.SwingCollection = function(){
       if(this.models.length > 0){
         return [[[1,2],[2,3]]];
       }
+    },
+
+    average: function(){
+      var sum;
+      _.each(_.keys(this.models[0]), function(column){
+        sum = _.reduce(_.pluck(this.models, column), function(memo, num){
+          if(!isNaN(parseFloat(num))){
+            return memo + num;
+          }
+        }, 0);
+      });
+      return parseFloat(sum/this.models.length);
     }
   }
 }
