@@ -1,0 +1,54 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/jquery.jqplot.css')
+    script(type='text/javascript', src='/javascripts/jquery.js')
+    script(type='text/javascript', src='/javascripts/jqplot/jquery.jqplot.js')
+    script(type='text/javascript', src='/javascripts/dropzone.js')
+    script(type='text/javascript', src='/bootstrap/js/bootstrap.js')
+    script(type='text/javascript', src='/javascripts/app/vendor/require-2.1.1.js')
+    script(type='text/javascript', src='/javascripts/app/config.js')
+
+  body
+    div.navbar.navbar-inverse.navbar-fixed-top
+      div.navbar-inner
+        div.container-fluid
+          a.brand(href="#") Golf Data
+          div.nav-collapse.collapse
+            ul.nav
+              li.dropdown
+                a.dropdown-toggle(href="#", data-toggle="dropdown")
+                  | Clubs
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(href="#") Sand Wedge
+                  li
+                    a(href="#") Pitching Wedge
+                  li
+                    a(href="#") 9 Iron
+                  li
+                    a(href="#") 8 Iron
+                  li
+                    a(href="#") 7 Iron
+                  li
+                    a(href="#") 6 Iron
+                  li
+                    a(href="#") 5 Iron
+                  li
+                    a(href="#") Hybrid 4
+                  li
+                    a(href="#") Hybrid 3
+                  li
+                    a(href="#") 5 Wood
+                  li
+                    a(href="#") 3 Wood
+                  li
+                    a(href="#") Driver
+    div.container-fluid
+      div.row-fluid
+        div.span3.sidebar
+        div.span9.site-container

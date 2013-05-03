@@ -4,17 +4,20 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , swings = require('./routes/swings')
-  , swingData = require('./routes/swing_data')
+  , routes = require('./api/routes')
+  , swings = require('./api/routes/swings')
+  , swingData = require('./api/routes/swing_data')
   , http = require('http')
   , path = require('path');
 
 var app = express();
 
 // all environments
+
+app.use require('connect-assets')();
+
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/api/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
