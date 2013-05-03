@@ -1,14 +1,17 @@
 define [
   'views/base/view'
-  'text!templates/hello-world.hbs'
+  'text!templates/swings-item.hbs'
 ], (View, template) ->
   'use strict'
 
-  class HelloWorldView extends View
+  class SwingsClubItemView extends View
+
     # Automatically render after initialize.
-    autoRender: true
-    className: 'hello-world'
-    region: 'main'
+    autoRender: false
+
+    container: '.swings table tbody'
+    className: 'swing-item'
+    tagName: 'tr'
 
     # Save the template string in a prototype property.
     # This is overwritten with the compiled template function.
@@ -18,4 +21,6 @@ define [
 
     initialize: ->
       super
-      console.log 'init hellow world'
+
+    render: ->
+      super

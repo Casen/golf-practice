@@ -6,7 +6,7 @@ exports.index = function(req, res){
       console.log(error);
     },
     success: function(swings) {
-      res.render('swings', {title: 'All Practice Swings', swings: swings});
+      res.send(swings);
     }
   });
 };
@@ -18,7 +18,7 @@ exports.clubs = function(req, res){
       console.log(error);
     },
     success: function(swings) {
-      res.render('swings', {title: 'All Practice Swings', swings: swings});
+      res.send(swings);
     }
   });
 };

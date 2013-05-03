@@ -1,14 +1,16 @@
 define [
+  'dropzone'
   'views/base/view'
-  'text!templates/hello-world.hbs'
-], (View, template) ->
+  'text!templates/sidebar.hbs'
+], (Dropzone, View, template) ->
   'use strict'
 
-  class HelloWorldView extends View
+  class SidebarView extends View
     # Automatically render after initialize.
     autoRender: true
-    className: 'hello-world'
-    region: 'main'
+
+    className: 'sidebar'
+    region: 'sidebar'
 
     # Save the template string in a prototype property.
     # This is overwritten with the compiled template function.
@@ -18,4 +20,8 @@ define [
 
     initialize: ->
       super
-      console.log 'init hellow world'
+
+    attach: ->
+      super
+      form = $('form.dropzone')
+      form.dropzone({url: form.attr('action')})

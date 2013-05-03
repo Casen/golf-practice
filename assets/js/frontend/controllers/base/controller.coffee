@@ -1,4 +1,8 @@
-define ['chaplin', 'views/site-view'], (Chaplin, SiteView) ->
+define [
+  'chaplin'
+  'views/site-view'
+  'views/sidebar-view'
+], (Chaplin, SiteView, SidebarView) ->
   'use strict'
 
   class Controller extends Chaplin.Controller
@@ -6,3 +10,4 @@ define ['chaplin', 'views/site-view'], (Chaplin, SiteView) ->
     beforeAction:
       '.*': ->
         @compose 'site', SiteView
+        @sidebarView = new SidebarView() unless @sidebarView?
