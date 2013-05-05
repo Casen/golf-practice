@@ -32,9 +32,19 @@ define(['dropzone', 'views/base/view', 'text!templates/sidebar.hbs'], function(D
 
       SidebarView.__super__.attach.apply(this, arguments);
       form = $('form.dropzone');
-      return form.dropzone({
+      this.dropzone = new Dropzone('form.dropzone', {
         url: form.attr('action')
       });
+      this.listenTo(this.dropzone, 'dragover', this.dragEnter);
+      return this.listenTo(this.dropzone, 'dragleave', this.dragLeave);
+    };
+
+    SidebarView.prototype.dragEnter = function(event) {
+      return $(event.currentTarget).parents('.filedrop').addClass('hover');
+    };
+
+    SidebarView.prototype.dragLeave = function(event) {
+      return $(event.currentTarget).parents('.filedrop').removeClass('hover');
     };
 
     return SidebarView;

@@ -24,4 +24,12 @@ define [
     attach: ->
       super
       form = $('form.dropzone')
-      form.dropzone({url: form.attr('action')})
+      @dropzone = new Dropzone('form.dropzone',{url: form.attr('action')})
+      @listenTo @dropzone, 'dragover', @dragEnter
+      @listenTo @dropzone, 'dragleave', @dragLeave
+
+    dragEnter: (event) ->
+      $(event.currentTarget).parents('.filedrop').addClass('hover')
+
+    dragLeave: (event) ->
+      $(event.currentTarget).parents('.filedrop').removeClass('hover')
