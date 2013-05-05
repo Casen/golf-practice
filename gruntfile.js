@@ -1,33 +1,48 @@
 module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-contrib-coffee');
-  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     coffee: {
-      app: {
-        src: ['assets/js/frontend/**/*.coffee'],
-        dest: 'public/javascripts/frontend',
+      compile: {
+        files: [
+          {expand: true, cwd: 'assets/js/frontend/', src: '**/*.coffee', dest: 'public/javascripts/frontend/', ext: '.js'}
+        ],
         options: {
-          bare: true,
-          preserve_dirs: true
+          bare: true
         }
       }
     },
     copy: {
       templates: {
-        src: ['assets/js/frontend/templates/**'],
-        dest: 'public/javascripts/frontend/templates',
+        files: [
+          {expand: true, cwd: 'assets/js/frontend/templates/', src: '**/*.hbs', dest: 'public/javascripts/frontend/templates'}
+        ]
       },
       vendor: {
-        src: ['assets/js/frontend/vendor/**'],
-        dest: 'public/javascripts/frontend/vendor'
+        src: 'assets/js/frontend/vendor/*.js',
+        dest: 'public/javascripts/frontend/vendor/'
       }
     },
     watch: {
-      files: ['<config:coffee.app.src>', '<config:copy.templates.src>'],
-      tasks: ['coffee:app', 'copy:templates', 'copy:vendor']
+      coffee: {
+        files: 'assets/js/frontend/**/*.coffee',
+        tasks: ['coffee'],
+        options: {
+          nospawn: true
+        }
+      },
+      templates: {
+        files: 'assets/js/frontend/templates/**/*.hbs',
+        tasks: ['copy:templates'],
+        options: {
+          nospawn: true
+        }
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.registerTask('default', ['coffee', 'copy']);
 };
