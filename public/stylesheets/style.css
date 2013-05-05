@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.filedrop {
+  min-height: 100px;
+  padding: 20px;
+  border: 2px dashed #CCC;
+}
+.filedrop.hover {
+  border-color: blue;
+}
+.filedrop form.dropzone {
+  width: 200px;
+  height: 100px;
+}
