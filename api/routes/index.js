@@ -37,7 +37,9 @@ exports.processCSV = function(req, res){
           return swing.club !== "Average";
         });
 
-        db.swings.insert(processed);
+        db.swings.insert(processed, function(err, inserted){
+          console.log(err);
+        });
       });
     });
   });
