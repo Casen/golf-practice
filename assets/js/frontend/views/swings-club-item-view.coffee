@@ -21,6 +21,3 @@ define [
 
     initialize: ->
       super
-
-    render: ->
-      super

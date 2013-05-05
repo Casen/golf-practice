@@ -1,8 +1,7 @@
 define [
   'chaplin'
   'views/site-view'
-  'views/sidebar-view'
-], (Chaplin, SiteView, SidebarView) ->
+], (Chaplin, SiteView) ->
   'use strict'
 
   class Controller extends Chaplin.Controller
@@ -10,4 +9,3 @@ define [
     beforeAction:
       '.*': ->
         @compose 'site', SiteView
-        @sidebarView = new SidebarView() unless @sidebarView?

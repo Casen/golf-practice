@@ -23,7 +23,7 @@ define [
       # the root per default. You might change that in the options
       # if necessary:
       # @initRouter routes, pushState: false, root: '/subdir/'
-      @initRouter routes, pushSate: false
+      @initRouter routes, pushState: false
 
       # Dispatcher listens for routing events and initialises controllers.
       @initDispatcher controllerSuffix: '-controller'

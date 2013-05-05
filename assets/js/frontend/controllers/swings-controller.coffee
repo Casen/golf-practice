@@ -7,5 +7,6 @@ define [
 
   class SwingsController extends Controller
     index: (params) ->
+      console.log params
       @collection = new SwingCollection(params)
       @view = new SwingClubView {@collection}

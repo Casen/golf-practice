@@ -14,6 +14,7 @@ define(['controllers/base/controller', 'models/swings', 'views/swings-club-view'
     }
 
     SwingsController.prototype.index = function(params) {
+      console.log(params);
       this.collection = new SwingCollection(params);
       return this.view = new SwingClubView({
         collection: this.collection

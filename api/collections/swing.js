@@ -12,10 +12,13 @@ exports.SwingCollection = function(){
     fetch: function(club, options) {
       _this = this;
       options = options ? options : club;
-      query = (typeof(club) === "string") ? {Club : slugToName(club)} : null;
+      query = (typeof(club) === "string") ? {club : slugToName(club)} : null;
 
       db.swings.find(query, function(error, models){
-        if( error ) options.error(error);
+        if( error ) {
+          options.error(error);
+          console.log(error);
+        }
         else {
           _this.models = models;
           options.success(models);

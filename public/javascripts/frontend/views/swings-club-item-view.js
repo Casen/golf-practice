@@ -29,10 +29,6 @@ define(['views/base/view', 'text!templates/swings-item.hbs'], function(View, tem
       return SwingsClubItemView.__super__.initialize.apply(this, arguments);
     };
 
-    SwingsClubItemView.prototype.render = function() {
-      return SwingsClubItemView.__super__.render.apply(this, arguments);
-    };
-
     return SwingsClubItemView;
 
   })(View);

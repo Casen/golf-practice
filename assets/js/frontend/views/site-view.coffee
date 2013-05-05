@@ -1,7 +1,8 @@
 define [
   'views/base/view'
+  'views/sidebar-view'
   'text!templates/site.hbs'
-], (View, template) ->
+], (View, SidebarView, template) ->
   'use strict'
 
   class SiteView extends View
@@ -16,4 +17,8 @@ define [
 
     initialize: ->
       super
-      console.log @regions
+
+    attach: ->
+      super
+      @subview 'sidebar', new SidebarView()
+
