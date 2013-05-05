@@ -25,22 +25,29 @@ exports.SwingCollection = function(){
         }
       });
     },
-    plotDistance: function(){
-      if(this.models.length > 0){
-        return [[[1,2],[2,3]]];
-      }
+    average: function(column){
+      var sum,average;
+      sum = _.reduce(_.pluck(this.models, column), function(memo, num){
+        if(!isNaN(parseFloat(num))){
+          return memo + num;
+        }
+      }, 0);
+      average = (sum == 0) ? sum : parseFloat(sum/this.models.length);
+      return average;
     },
-
-    average: function(){
-      var sum;
-      _.each(_.keys(this.models[0]), function(column){
-        sum = _.reduce(_.pluck(this.models, column), function(memo, num){
-          if(!isNaN(parseFloat(num))){
-            return memo + num;
-          }
-        }, 0);
+    average_accuracy: function(){
+      var accuracies = _.map(this.models, function(model){
+        return (100 - (Math.abs(model.offline) / model.total_distance * 100));
       });
-      return parseFloat(sum/this.models.length);
+      return _.reduce(accuracies, function(memo, num){ return memo + num;}, 0) / this.models.length;
+    },
+    analytics: function(){
+      return {
+        average_distance: this.average('total_distance'),
+        average_club_head_speed: this.average('club_head_speed'),
+        average_accuracy: this.average_accuracy(),
+        longest_shot: _.sortBy(this.models, function(model){return -model.total_distance})[0]
+      }
     }
   }
 }

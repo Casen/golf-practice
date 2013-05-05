@@ -7,7 +7,7 @@ exports.clubs = function(req, res) {
       console.log(error);
     },
     success: function(swings) {
-      res.send(plotter.shotLanding(swings,req.params.chart));
+      res.send(swingCollection.analytics());
     }
   });
 
