@@ -9,10 +9,21 @@ function slugToName(slug) {
 exports.SwingCollection = function(){
   return {
     models: [],
-    fetch: function(club, options) {
+    fetch: function(club, params, options) {
       _this = this;
-      options = options ? options : club;
-      query = (typeof(club) === "string") ? {club : slugToName(club)} : null;
+      console.log(params);
+
+      query = (typeof(club) === "string") ? {club : slugToName(club)} : {};
+
+      if(params.start) {
+        query.created_at = {};
+        query.created_at["$gte"] = new Date(params.start);
+      }
+
+      if(params.end) {
+        query.created_at = query.created_at || {};
+        query.created_at["$lte"] = new Date(params.end);
+      }
 
       db.swings.find(query, function(error, models){
         if( error ) {
@@ -41,11 +52,31 @@ exports.SwingCollection = function(){
       });
       return _.reduce(accuracies, function(memo, num){ return memo + num;}, 0) / this.models.length;
     },
+    miss_right_percentage: function(){
+      count = _.filter(this.models, function(model){
+        return model.offline > 10;
+      }).length;
+      return 100 * (count/this.models.length);
+    },
+    miss_left_percentage: function(){
+      count = _.filter(this.models, function(model){
+        return model.offline < -10;
+      }).length;
+      return 100 * (count/this.models.length);
+    },
+    straight_percentage: function(){
+      return 100 - this.miss_left_percentage() - this.miss_right_percentage();
+    },
     analytics: function(){
       return {
         average_distance: this.average('total_distance'),
         average_club_head_speed: this.average('club_head_speed'),
         average_accuracy: this.average_accuracy(),
+        straight_percentage: this.straight_percentage(),
+        miss_right_percentage: this.miss_right_percentage(),
+        miss_left_percentage: this.miss_left_percentage(),
+        worst_hook: _.sortBy(this.models, function(model){return model.offline;})[0],
+        worst_slice: _.sortBy(this.models, function(model){return -model.offline;})[0],
         longest_shot: _.sortBy(this.models, function(model){return -model.total_distance})[0]
       }
     }
