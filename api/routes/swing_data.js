@@ -1,4 +1,7 @@
-var swingCollection = new require('../collections/swing').SwingCollection();
+var SwingCollection = require('../collections/swing').SwingCollection;
+
+var swingCollection = new SwingCollection();
+
 var plotter = require('../lib/plotter').plotter;
 
 exports.clubs = function(req, res) {
