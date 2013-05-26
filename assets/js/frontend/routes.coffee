@@ -6,4 +6,4 @@ define ->
   (match) ->
     match '!/swings', 'swings#index'
     match '!/swings/:club', 'swings#index'
-    match '', 'hello#show'
+    match '!/stats/:club', 'swings#stats'

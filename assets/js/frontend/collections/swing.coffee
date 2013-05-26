@@ -5,7 +5,7 @@ define [
 ], (Chaplin, Collection, Swing) ->
   'use strict'
 
-  class Swings extends Collection
+  class SwingCollection extends Collection
 
     model: Swing
 

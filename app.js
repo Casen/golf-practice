@@ -34,7 +34,7 @@ app.post('/process-csv', routes.processCSV);
 app.get('/api/swings', swings.index);
 app.get('/api/swings/:club', swings.clubs);
 app.get('/api/data/:club', swingData.clubs);
-app.get('/api/series/:club/:stat', swingData.stat_over_time);
+app.get('/api/stats/:club/:stat', swingData.stat_over_time);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
