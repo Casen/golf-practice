@@ -1,4 +1,5 @@
-var swingCollection = new require('../collections/swing').SwingCollection()
+var SwingCollection = require('../collections/swing').SwingCollection;
+var swingCollection = new SwingCollection();
 
 exports.index = function(req, res){
   swingCollection.fetch({
@@ -13,7 +14,7 @@ exports.index = function(req, res){
 
 exports.clubs = function(req, res){
 
-  swingCollection.fetch(req.params.club, {
+  swingCollection.fetch(req.params.club, {}, {
     error: function(error){
       console.log(error);
     },

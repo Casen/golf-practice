@@ -1,12 +1,11 @@
 define [
   'controllers/base/controller'
-  'models/swings'
+  'collections/swing'
   'views/swings-club-view'
 ], (Controller, SwingCollection, SwingClubView) ->
   'use strict'
 
   class SwingsController extends Controller
     index: (params) ->
-      console.log params
       @collection = new SwingCollection(params)
       @view = new SwingClubView {@collection}

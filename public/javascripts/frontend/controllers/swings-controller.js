@@ -1,7 +1,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['controllers/base/controller', 'models/swings', 'views/swings-club-view'], function(Controller, SwingCollection, SwingClubView) {
+define(['controllers/base/controller', 'collections/swing', 'views/swings-club-view'], function(Controller, SwingCollection, SwingClubView) {
   'use strict';
   var SwingsController, _ref;
 
@@ -14,7 +14,6 @@ define(['controllers/base/controller', 'models/swings', 'views/swings-club-view'
     }
 
     SwingsController.prototype.index = function(params) {
-      console.log(params);
       this.collection = new SwingCollection(params);
       return this.view = new SwingClubView({
         collection: this.collection

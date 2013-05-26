@@ -1,6 +1,6 @@
 define [
   'chaplin',
-  'models/base/collection'
+  'collections/base/collection'
   'models/swing'
 ], (Chaplin, Collection, Swing) ->
   'use strict'
