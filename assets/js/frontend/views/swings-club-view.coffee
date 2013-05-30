@@ -25,5 +25,5 @@ define [
 
     initialize: ->
       super
-      console.log 'init swings'
+      console.log 'init your mom'
       @collection.fetch()

@@ -19,4 +19,16 @@ define [
     template = null
 
     initialize: ->
+      @collection.fetch
+        success: =>
+          @render()
       super
+
+    attach: ->
+      super
+      graphObj = @collection.generateLineChart('accuracy-chart', 'average_accuracy')
+      graphObj.ymin = 60
+      graphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line graphObj
+
+

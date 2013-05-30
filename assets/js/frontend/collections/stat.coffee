@@ -7,7 +7,7 @@ define [
 
   class StatCollection extends Collection
 
-    model: Swing
+    model: Stat
     stat: 'analytics'
 
     url: ->
@@ -17,3 +17,19 @@ define [
       @club = options.club
       @stat = options.stat if !!options.stat
       super
+
+    generateLineChart: (container, stat) ->
+      obj = {}
+      obj.element = container
+      data =  _.map(@pluck(stat), (val, index) ->
+        temp = {}
+        temp[stat] = val.toFixed(2)
+        temp['index'] = index
+        return temp
+      )
+      obj.data = data
+      obj.ykeys = [stat]
+      obj.xkey = 'index'
+      obj.labels = [stat]
+      return obj
+

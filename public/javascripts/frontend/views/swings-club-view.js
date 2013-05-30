@@ -31,7 +31,7 @@ define(['views/base/collection-view', 'views/swings-club-item-view', 'text!templ
 
     SwingClubView.prototype.initialize = function() {
       SwingClubView.__super__.initialize.apply(this, arguments);
-      console.log('init swings');
+      console.log('init your mom');
       return this.collection.fetch();
     };
 
