@@ -13,7 +13,6 @@ function SwingCollection (models) {
 SwingCollection.prototype = {
   fetch: function(club, params, options) {
     _this = this;
-    console.log(params);
 
     query = (typeof(club) === "string") ? {club : slugToName(club)} : {};
 
@@ -55,19 +54,25 @@ SwingCollection.prototype = {
     return _.reduce(accuracies, function(memo, num){ return memo + num;}, 0) / this.models.length;
   },
   miss_right_percentage: function(){
+    var _this = this;
     var count = _.filter(this.models, function(model){
-      return model.offline > 10;
+      return model.offline > _this.error_window(model.total_distance);
     }).length;
     return 100 * (count/this.models.length);
   },
   miss_left_percentage: function(){
+    var _this = this;
     var count = _.filter(this.models, function(model){
-      return model.offline < -10;
+      return model.offline < -_this.error_window(model.total_distance);
     }).length;
     return 100 * (count/this.models.length);
   },
   straight_percentage: function(){
     return 100 - this.miss_left_percentage() - this.miss_right_percentage();
+  },
+  error_window: function(distance){
+    var w = Math.tan(5 * Math.PI/180) * distance;
+    return w;
   },
   analytics: function(){
     return {
@@ -79,7 +84,8 @@ SwingCollection.prototype = {
       miss_left_percentage: this.miss_left_percentage(),
       worst_hook: _.sortBy(this.models, function(model){return model.offline;})[0],
       worst_slice: _.sortBy(this.models, function(model){return -model.offline;})[0],
-      longest_shot: _.sortBy(this.models, function(model){return -model.total_distance})[0]
+      longest_shot: _.sortBy(this.models, function(model){return -model.total_distance})[0],
+      date: this.models[this.models.length - 1].created_at
     }
   },
   stat_over_time: function(stat){

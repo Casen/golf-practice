@@ -25,7 +25,6 @@ exports.processCSV = function(req, res){
         var processed = _.map(swings, function(swing){
           var processedSwing = {};
           _.each(swing, function(val, key){
-            console.log('val', val);
             if(typeof(val) !== "object" && val !== "N/A") {
               key = key.toLowerCase().replace(/\s/g, '_');
               processedSwing[key] = val;

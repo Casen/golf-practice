@@ -26,9 +26,11 @@ define [
 
     attach: ->
       super
-      graphObj = @collection.generateLineChart('accuracy-chart', 'average_accuracy')
-      graphObj.ymin = 60
-      graphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
-      Morris.Line graphObj
+      accuracyGraphObj = @collection.generateLineChart('accuracy-chart', 'average_accuracy')
+      accuracyGraphObj.ymin = 60
+      accuracyGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line accuracyGraphObj
 
+      missGraphObj = @collection.generateDonutChart('miss-chart', ['miss_left_percentage', 'straight_percentage', 'miss_right_percentage'])
+      Morris.Donut missGraphObj
 
