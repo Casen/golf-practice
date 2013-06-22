@@ -34,3 +34,6 @@ define [
       missGraphObj = @collection.generateDonutChart('miss-chart', ['miss_left_percentage', 'straight_percentage', 'miss_right_percentage'])
       Morris.Donut missGraphObj
 
+      straightGraphObj = @collection.generateLineChart('straight-chart', 'straight_percentage')
+      straightGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line straightGraphObj
