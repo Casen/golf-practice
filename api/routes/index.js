@@ -31,6 +31,7 @@ exports.processCSV = function(req, res){
             }
           });
           processedSwing.created_at = new Date();
+          processedSwing.type = "i20"; //let's just do this for now
           return processedSwing;
         });
         processed = _.filter(processed, function(swing){
