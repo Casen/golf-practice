@@ -27,7 +27,7 @@ define [
     attach: ->
       super
       accuracyGraphObj = @collection.generateLineChart('accuracy-chart', 'average_accuracy')
-      accuracyGraphObj.ymin = 60
+      accuracyGraphObj.ymin = 70
       accuracyGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
       Morris.Line accuracyGraphObj
 

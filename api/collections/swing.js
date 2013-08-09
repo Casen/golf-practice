@@ -78,6 +78,7 @@ SwingCollection.prototype = {
     return {
       average_distance: this.average('total_distance'),
       average_carry: this.average('carry'),
+      average_height: this.average('peak_height'),
       average_backspin: this.average('back_spin'),
       average_club_head_speed: this.average('club_head_speed'),
       average_accuracy: this.average_accuracy(),

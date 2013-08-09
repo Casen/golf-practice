@@ -6,6 +6,7 @@ block content
     thead
       tr
         th Club
+        th Model
         th Club Head Speed
         th Launch Angle
         th Azimuth
@@ -19,6 +20,7 @@ block content
       - for swing in swings
         tr
           td #{swing['Club']}
+          td #{swing['type']}
           td #{swing['Club Head Speed']}
           td #{swing['Launch Angle']}
           td #{swing['Azimuth']}

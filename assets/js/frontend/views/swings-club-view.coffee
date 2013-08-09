@@ -25,5 +25,4 @@ define [
 
     initialize: ->
       super
-      console.log 'init your mom'
       @collection.fetch()

@@ -4,7 +4,8 @@ define [
   'collections/stat'
   'views/swings-club-view'
   'views/stat-view'
-], (Controller, SwingCollection, StatCollection, SwingClubView, StatView) ->
+  'views/upload-view'
+], (Controller, SwingCollection, StatCollection, SwingClubView, StatView, UploadView) ->
   'use strict'
 
   class SwingsController extends Controller
@@ -18,4 +19,7 @@ define [
       console.log 'stats method'
       @collection = new StatCollection(params)
       @view = new StatView {@collection}
+
+    upload: (params) ->
+      @view = new UploadView
 

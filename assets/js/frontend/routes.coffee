@@ -7,3 +7,4 @@ define ->
     match '!/swings', 'swings#index'
     match '!/swings/:club', 'swings#index'
     match '!/stats/:club', 'swings#stats'
+    match '!/upload', 'swings#upload'

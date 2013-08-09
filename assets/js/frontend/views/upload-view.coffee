@@ -1,16 +1,16 @@
 define [
   'dropzone'
   'views/base/view'
-  'text!templates/sidebar.hbs'
+  'text!templates/upload.hbs'
 ], (Dropzone, View, template) ->
   'use strict'
 
-  class SidebarView extends View
+  class UploadView extends View
     # Automatically render after initialize.
     autoRender: true
 
-    className: 'sidebar'
-    region: 'sidebar'
+    className: 'upload'
+    region: 'main'
 
     # Save the template string in a prototype property.
     # This is overwritten with the compiled template function.
