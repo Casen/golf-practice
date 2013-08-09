@@ -70,12 +70,44 @@ SwingCollection.prototype = {
   straight_percentage: function(){
     return 100 - this.miss_left_percentage() - this.miss_right_percentage();
   },
+  dispersion_radius: function(){
+    var maxX, maxY, minX, minY, yDistance, xDistance, radius, points, sorted;
+
+    function distance(p1, p2) {
+      return Math.sqrt(Math.pow((p1.x - p2.x), 2), Math.pow((p1.y - p2.y), 2));
+    }
+
+    points = _.map(this.models, function(model){
+      return {x: model.offline, y: model.total_distance}
+    });
+
+    sorted = _.sortBy(points, function(point){
+      return -point.x;
+    });
+    maxX = sorted[0];
+    minX = sorted[points.length - 1];
+
+    sorted = _.sortBy(points, function(point){
+      return -point.y;
+    });
+    maxY = sorted[0];
+    minY = sorted[points.length - 1];
+
+    yDistance = distance(maxY, minY);
+    xDistance = distance(maxX, minX);
+
+    radius = (yDistance > xDistance ? yDistance/2.0 : xDistance/2.0);
+
+    return radius;
+
+  },
   error_window: function(distance){
     var w = Math.tan(5 * Math.PI/180) * distance;
     return w;
   },
   analytics: function(){
     return {
+      dispersion_radius: this.dispersion_radius(),
       average_distance: this.average('total_distance'),
       average_carry: this.average('carry'),
       average_height: this.average('peak_height'),
