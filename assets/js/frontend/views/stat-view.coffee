@@ -37,3 +37,19 @@ define [
       straightGraphObj = @collection.generateLineChart('straight-chart', 'straight_percentage')
       straightGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
       Morris.Line straightGraphObj
+
+      carryGraphObj = @collection.generateLineChart('carry-chart', 'average_carry')
+      carryGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line carryGraphObj
+
+      dispersionGraphObj = @collection.generateLineChart('dispersion-chart', 'dispersion_radius')
+      dispersionGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line dispersionGraphObj
+
+      distanceGraphObj = @collection.generateLineChart('distance-chart', 'average_distance')
+      distanceGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line distanceGraphObj
+
+      speedGraphObj = @collection.generateLineChart('club-speed-chart', 'average_club_head_speed')
+      speedGraphObj.yLabelFormat = (y) -> return y.toFixed(2).toString()
+      Morris.Line speedGraphObj
